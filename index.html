@@ -26,6 +26,7 @@
 
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/viz.css" rel="stylesheet">
 
   </head>
 
@@ -159,35 +160,20 @@
           <h2>Milestone 02</h2>
         </div>
         <!-- Choropleth Map -->
-        <div id="choropleth-map" class="d-flex align-items-center">
-          <div class="container">
-            <div class="row">
-              <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-                <div class="row justify-content-center">
-                  <div class="col-xl-12 col-lg-12 col-md-12 text-center">
-                    <h2>Monkeypox: Cumulative Confirmed Cases, June 27, 2022</h2>
-                    <svg id="map_"></svg>
-                    <div id ="legend">
-                      <svg id="legends"></svg>
-                    </div>
-                    <!--<div class="slidecontainer">
-                      <div id="slider"></div>
-                      <div id="vis"></div>
-                    </div>
-                      <div class="tooltips"></div>
-                      <svg id="myCircles"></svg>-->
-                  </div>
-                </div>
-              </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-7 col-lg-9 text-center">
+            <div class="map">
+              <svg id="my_dataviz" width="1000" height="450"></svg>
+              <div id="legends"></div>
             </div>
+            <div class="slidecontainer">
+              <div id="slider"></div>
+              <div id="vis"></div>
+            </div>
+            <div class="tooltips"></div>
           </div>
         </div>
       </section>
-
-
-      </section>
-
-
 
       <!-- ======= Team Section ======= -->
       <section id="team" class="team">
@@ -346,10 +332,17 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <!-- D3 Library Import -->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="assets/js/visualization.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="assets/js/map_vs.js"></script>
 
   </body>
 
