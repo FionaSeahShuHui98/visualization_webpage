@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                font-family: Pacifico;
+                background: #a67f78;
+                color: #ffffff;
+            }
+            #counter {
+                font-size: 100px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="counter"></div>
+        <script>
+            const start = 0;
+            const end = 9999;
+
+            d3.select('#counter').transition()
+            .tween("text", () => {
+                const interpolator = d3.interpolateNumber(0, end);
+                return function(t) {
+                d3.select(this).text(Math.round(interpolator(t))) 
+                }
+            })
+            .duration(1000);
+        </script>
+    </body>
+</html>
