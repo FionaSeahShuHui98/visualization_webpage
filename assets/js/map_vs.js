@@ -302,6 +302,40 @@ function ready(error, topo, nil, inf_list) {
     })
 
     console.log(topo.features)
+    console.log(topo.features[3].Hospitalized)
+    console.log(topo.features.length)
+
+    //*************************************** Pie Chart ******************************************************//
+
+    // Declaration
+    const hospital = []
+    const non_hospital = []
+    let sum = 0
+
+    for (let i = 0; i < topo.features.length; i++) {
+      if (topo.features[i].Hospitalized >= 0) {
+        hospital.push(topo.features[i].Hospitalized)
+      }
+      else {
+        non_hospital.push(topo.features[i].Hospitalized)
+      }
+    }
+
+    console.log(hospital)
+
+    for (let i = 0; i<hospital.length; i++) {
+      sum += parseInt(hospital[i])
+    }
+    
+    console.log("Sum: " + sum)
+
+    const final_no = sum
+
+    console.log("Final: " + final_no)
+
+    console.log("Hospitalized Percentage: " + (hospital.length / topo.features.length) * 100 + "%")
+
+    //********************************** End of Pie Chart *****************************************************//
 
 	let mouseOver = function(d) {
 		d3.selectAll(".Country")
