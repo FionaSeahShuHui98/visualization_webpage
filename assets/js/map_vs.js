@@ -330,10 +330,59 @@ function ready(error, topo, nil, inf_list) {
     console.log("Sum: " + sum)
 
     const final_no = sum
+    const hosp_per = (hospital.length / topo.features.length) * 100
+    const non_hosp_per = 100 - hosp_per
 
     console.log("Final: " + final_no)
 
-    console.log("Hospitalized Percentage: " + (hospital.length / topo.features.length) * 100 + "%")
+    console.log("Hospitalized Percentage: " + hosp_per + "%")
+
+    console.log("Not hospitalized Percentage: " + non_hosp_per + "%")
+
+    // Set the dimension and margins of the graph
+    var pie_width = 450
+        pie_height = 450
+        pie_margin = 40
+
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    var pie_radius = Math.min(pie_width, pie_height) / 2 - pie_margin
+
+    // append the svg object to the div called 'pie_chart'
+    var svg = d3.select("#pie_chart")
+      .append("svg")
+        .attr("width", pie_width)
+        .attr("height". pie_height)
+    
+    var pie_dataset = {
+      hos: hosp_per,
+      non_hos: non_hosp_per
+    }
+
+    console.log(pie_dataset)
+
+    var color = d3.scaleOrdinal()
+      .domain(pie_dataset)
+      .range(["#98abc5", "#8a89a6"])
+
+    // Compute the position of each group on the pie:
+    var pie = d3.pie()
+      .value(function(d) {return d.value; })
+    var data_ready = pie(d3.entries(pie_dataset))
+
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    svg.selectAll('whatever')
+    .data(data_ready)
+    .enter()
+    .append('path')
+    .attr('d', d3.arc()
+      .innerRadius(0)
+      .outerRadius(pie_radius)
+    )
+    .attr('fill', function(d){ return(color(d.data.key)) })
+    .attr("stroke", "black")
+    .style("stroke-width", "2px")
+    .style("opacity", 0.7)
+
 
     //********************************** End of Pie Chart *****************************************************//
 
