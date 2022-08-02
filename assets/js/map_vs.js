@@ -348,7 +348,7 @@ function ready(error, topo, nil, inf_list) {
     var pie_radius = Math.min(pie_width, pie_height) / 2 - pie_margin
 
     // append the svg object to the div called 'pie_chart'
-    var svg = d3.select("#pie_chart")
+    var piepie = d3.select("#pie_chart")
       .append("svg")
         .attr("width", pie_width)
         .attr("height". pie_height)
@@ -370,21 +370,49 @@ function ready(error, topo, nil, inf_list) {
     var data_ready = pie(d3.entries(pie_dataset))
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-    svg.selectAll('whatever')
-    .data(data_ready)
-    .enter()
-    .append('path')
-    .attr('d', d3.arc()
-      .innerRadius(0)
-      .outerRadius(pie_radius)
-    )
-    .attr('fill', function(d){ return(color(d.data.key)) })
-    .attr("stroke", "black")
-    .style("stroke-width", "2px")
-    .style("opacity", 0.7)
+    // piepie
+    //   .selectAll(".svg")
+    //   .data(data_ready)
+    //   .enter()
+    //   .append('path')
+    //   .attr('d', d3.arc()
+    //     .innerRadius(0)
+    //     .outerRadius(pie_radius)
+    //   )
+    //   .attr('fill', function(d){ return(color(d.data.key)) })
+    //   .attr("stroke", "black")
+    //   .style("stroke-width", "2px")
+    //   .style("opacity", 0.7)
 
 
     //********************************** End of Pie Chart *****************************************************//
+
+    //******************************* Confirmed Cases ********************************************************//
+
+    const confirm = []
+    const not_confirm = []
+    let confirm_sum = 0
+
+    console.log(topo.features[4].Confirmed_Cases)
+
+    for (let i = 0; i < topo.features.length; i++) {
+      if (topo.features[i].Confirmed_Cases >= 0) {
+        confirm.push(topo.features[i].Confirmed_Cases)
+      }
+      else {
+        not_confirm.push(topo.features[i].Confirmed_Cases)
+      }
+    }
+
+    console.log(confirm)
+
+    for (let i = 0; i<confirm.length; i++) {
+      confirm_sum += parseInt(confirm[i])
+    }
+
+    console.log(confirm_sum)
+    //******************************* End of Confirmed Cases ********************************************************//
+
 
 	let mouseOver = function(d) {
 		d3.selectAll(".Country")
